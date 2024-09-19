@@ -21,3 +21,9 @@ spring:
             token-uri: https://api.instagram.com/oauth/access_token
             user-info-uri: https://graph.instagram.com/v20.0/me
 
+
+jwt:
+  prefix: ${JWT_PREFIX:Bearer}
+  header: ${JWT_HEADER:Authorization}
+  secret: ${JWT_SECRET:whsrudgksmsrnralsdufjqnsfjenczndbrbucairk}
+  expiration: ${JWT_EXPIRATION:86400000}
