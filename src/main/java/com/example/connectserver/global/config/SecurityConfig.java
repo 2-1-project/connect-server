@@ -1,8 +1,10 @@
 package com.example.connectserver.global.config;
 
+import com.example.connectserver.domain.user.service.UserManagementService;
 import com.example.connectserver.global.auth.CustomOAuth2AccessTokenResponseClient;
 import com.example.connectserver.global.auth.InstagramOAuthService;
 import com.example.connectserver.global.auth.LoginSeccessHendler;
+import com.example.connectserver.global.auth.OAuthSuccessHendler;
 import com.example.connectserver.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +25,7 @@ public class SecurityConfig {
     private final JwtProvider jwtProvider;
     private final InstagramOAuthService instagramOAuthService;
     private final CustomOAuth2AccessTokenResponseClient oAuth2AccessTokenResponseClient;
+    private final UserManagementService userManagementService;
 
 
     @Bean
@@ -46,7 +49,7 @@ public class SecurityConfig {
                                 .userInfoEndpoint(
                                     userInfoEndpointConfig -> userInfoEndpointConfig.userService(instagramOAuthService)
                                 )
-                                .successHandler(new LoginSeccessHendler(jwtProvider))
+                                .successHandler(new OAuthSuccessHendler(jwtProvider,userManagementService))
                                 .tokenEndpoint(t ->
                                             t.accessTokenResponseClient(oAuth2AccessTokenResponseClient)
                                         )

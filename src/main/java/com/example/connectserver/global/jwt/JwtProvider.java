@@ -35,9 +35,26 @@ public class JwtProvider {
 
     }
 
+    public String OAuthTokenGenerator(String id){
+        return Jwts.builder()
+                .claim("id",id)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis()+ACCESS_TOKEN_VALIDITY_SECONDS))
+                .signWith(secretKey)
+                .compact();
+    }
+
 
     public boolean isExpired(String token) {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
+    }
+
+    public String getIdFromToken(String token) {
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("id",String.class);
+    }
+
+    public String getUsernameFromToken(String token) {
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("username",String.class);
     }
 
 
