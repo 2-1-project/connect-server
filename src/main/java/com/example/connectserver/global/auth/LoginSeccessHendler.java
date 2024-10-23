@@ -20,7 +20,8 @@ public class LoginSeccessHendler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String token = jwtProvider.TokenGenerator((CustomUserDetails) authentication.getDetails());
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getDetails();
+        String token = jwtProvider.TokenGenerator(userDetails);
         response.addHeader("Authorization", "Bearer " + token);
         super.onAuthenticationSuccess(request, response, authentication);
     }

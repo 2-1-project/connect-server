@@ -1,13 +1,15 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/${DB_NAME}
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:1111}
+    password: ${DB_PASSWORD:1234}
+    url: jdbc:mysql://localhost:3306/${DB_NAME:connect-db}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   security:
     oauth2:
       client:
         registration:
           instagram:
+            client-name: instagram
             client-id: ${INSTAGRAM_CLIENT_ID:916068230372786}
             client-secret: ${INSTAGRAM_CLIENT_SECRET:22826d7371a23aec90c3dc9601fcc49b}
             scope:

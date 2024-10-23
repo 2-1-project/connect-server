@@ -5,6 +5,7 @@ import com.example.connectserver.global.auth.CustomOAuth2AccessTokenResponseClie
 import com.example.connectserver.global.auth.InstagramOAuthService;
 import com.example.connectserver.global.auth.LoginSeccessHendler;
 import com.example.connectserver.global.auth.OAuthSuccessHendler;
+import com.example.connectserver.global.filter.CorsFilter;
 import com.example.connectserver.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -37,10 +38,14 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(new CorsFilter()))
 
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
+
+                .authorizeHttpRequests( request ->
+                        request.requestMatchers("/login/**").permitAll()
+                )
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 

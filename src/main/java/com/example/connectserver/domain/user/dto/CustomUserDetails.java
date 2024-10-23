@@ -11,8 +11,7 @@ import java.util.List;
 @Builder
 public record CustomUserDetails(
         String username,
-        String password,
-        Date birth
+        String password
         //Collection<? extends GrantedAuthority> authorities
 ) implements UserDetails {
     @Override
