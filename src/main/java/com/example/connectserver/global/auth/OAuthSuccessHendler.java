@@ -37,7 +37,6 @@ public class OAuthSuccessHendler extends SimpleUrlAuthenticationSuccessHandler {
             System.out.println("OAuthSuccess");
             response.sendRedirect("http://localhost:3000"); // 매인페이지로 이동
         }
-
     }
 
     public Cookie makeCookie(String key, String value) {

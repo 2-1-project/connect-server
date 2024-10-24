@@ -22,7 +22,7 @@ public class UserManagementService {
         UserEntity user = userRepository.findByInstagramId(InstaId);
         if (user == null) {
             return null;
-        }else {
+        } else {
             return user;
         }
     }

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class LoginSeccessHendler extends SimpleUrlAuthenticationSuccessHandler {
+public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final JwtProvider jwtProvider;
 

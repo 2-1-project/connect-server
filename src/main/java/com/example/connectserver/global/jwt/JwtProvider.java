@@ -44,7 +44,6 @@ public class JwtProvider {
                 .compact();
     }
 
-
     public boolean isExpired(String token) {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
     }
@@ -56,7 +55,4 @@ public class JwtProvider {
     public String getUsernameFromToken(String token) {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("username",String.class);
     }
-
-
-
 }

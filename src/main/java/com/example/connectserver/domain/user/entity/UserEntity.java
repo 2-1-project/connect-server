@@ -13,12 +13,16 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private long id;
+
     @Column(name = "instagram_id", unique = true)
     private String instagramId;
+
     @Column(name = "instagram_username")
     private String instagramUsername;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
 }

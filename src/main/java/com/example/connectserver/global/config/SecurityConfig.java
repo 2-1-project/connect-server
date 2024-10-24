@@ -4,7 +4,6 @@ import com.example.connectserver.domain.user.service.CustomOauth2UserService;
 import com.example.connectserver.domain.user.service.UserManagementService;
 import com.example.connectserver.global.auth.CustomOAuth2AccessTokenResponseClient;
 import com.example.connectserver.global.auth.InstagramOAuthService;
-import com.example.connectserver.global.auth.LoginSeccessHendler;
 import com.example.connectserver.global.auth.OAuthSuccessHendler;
 import com.example.connectserver.global.filter.CorsFilter;
 import com.example.connectserver.global.jwt.JwtProvider;

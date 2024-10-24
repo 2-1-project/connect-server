@@ -59,9 +59,4 @@ public class CustomOAuth2AccessTokenResponseClient implements OAuth2AccessTokenR
             throw new OAuth2AuthenticationException(e.getMessage());
         }
     }
-
-
-
-
-
 }

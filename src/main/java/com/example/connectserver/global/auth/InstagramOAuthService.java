@@ -44,8 +44,5 @@ public class InstagramOAuthService extends DefaultOAuth2UserService {
         collection.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new DefaultOAuth2User(collection, userInfo, "username");
-
-
-
     }
 }
