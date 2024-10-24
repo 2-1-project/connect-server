@@ -1,6 +1,8 @@
 package com.example.connectserver.global.auth;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class InstagramOAuthService extends DefaultOAuth2UserService {
     @Value("${spring.security.oauth2.client.provider.instagram.user-info-uri}")
@@ -27,13 +30,20 @@ public class InstagramOAuthService extends DefaultOAuth2UserService {
             throw new OAuth2AuthenticationException("can use after login");
         }
 
+        log.info("token= ",token);
+        log.info(userInfoUri+token);
 
         RestTemplate restTemplate = new RestTemplate();
-        Map<String, Object> userInfo = restTemplate.getForObject(userInfoUri+token, Map.class);
+        userInfoUri = userInfoUri+token;
+        HttpEntity<String> entity = new HttpEntity<>(new HttpHeaders());
+        ResponseEntity<Map> response = restTemplate.exchange(userInfoUri, HttpMethod.GET, entity, Map.class);
+
+        Map<String,Object> userInfo = response.getBody();
+        log.info("id",userInfo.get("id"));
         Collection<SimpleGrantedAuthority> collection = new ArrayList<>();
         collection.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        return new DefaultOAuth2User(collection, userInfo, token);
+        return new DefaultOAuth2User(collection, userInfo, "username");
 
 
 

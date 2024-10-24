@@ -1,5 +1,6 @@
 package com.example.connectserver.global.config;
 
+import com.example.connectserver.domain.user.service.CustomOauth2UserService;
 import com.example.connectserver.domain.user.service.UserManagementService;
 import com.example.connectserver.global.auth.CustomOAuth2AccessTokenResponseClient;
 import com.example.connectserver.global.auth.InstagramOAuthService;
@@ -18,13 +19,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = false)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
 
     private final JwtProvider jwtProvider;
-    private final InstagramOAuthService instagramOAuthService;
+    private final CustomOauth2UserService oauth2UserService;
     private final CustomOAuth2AccessTokenResponseClient oAuth2AccessTokenResponseClient;
     private final UserManagementService userManagementService;
 
@@ -44,22 +45,18 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests( request ->
-                        request.requestMatchers("/login/**").permitAll()
+                        request.requestMatchers("/","/login/**","/test_null").permitAll().anyRequest().authenticated()
                 )
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .oauth2Login(oauth ->
                         oauth
-                                .userInfoEndpoint(
-                                    userInfoEndpointConfig -> userInfoEndpointConfig.userService(instagramOAuthService)
-                                )
                                 .successHandler(new OAuthSuccessHendler(jwtProvider,userManagementService))
                                 .tokenEndpoint(t ->
                                             t.accessTokenResponseClient(oAuth2AccessTokenResponseClient)
                                         )
-                                .userInfoEndpoint(usI -> usI.userService(instagramOAuthService)
-                                )
+                                .userInfoEndpoint(usI -> usI.userService(oauth2UserService))
                 );
 
         return http.build();

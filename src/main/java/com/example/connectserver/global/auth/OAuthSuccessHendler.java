@@ -31,10 +31,11 @@ public class OAuthSuccessHendler extends SimpleUrlAuthenticationSuccessHandler {
         response.addCookie(makeCookie("Authorization",token));
         UserEntity user = userManagementService.getUserByInstaId(id);
         if (user.getUsername() == null) {
-            response.sendRedirect("/test_null"); // 정보 입력 페이지로 이동.
+            System.out.println("ggg");
+            response.sendRedirect("https://localhost:8443/test_null"); // 정보 입력 페이지로 이동.
         }else {
             System.out.println("OAuthSuccess");
-            response.sendRedirect("/"); // 매인페이지로 이동
+            response.sendRedirect("http://localhost:3000"); // 매인페이지로 이동
         }
 
     }

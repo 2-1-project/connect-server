@@ -1,3 +1,12 @@
+server:
+  ssl:
+    enabled: true
+    key-store-password: ${KEY_PASSWORD}
+    key-store-type: PKCS12
+    key-store: C:\Users\user\Desktop\Back\javaTeamProject\src\main\resources\keyStore\test.p12
+    key-alias: test
+  port: 8443
+
 spring:
   datasource:
     username: ${DB_USERNAME:root}
@@ -12,16 +21,18 @@ spring:
             client-name: instagram
             client-id: ${INSTAGRAM_CLIENT_ID:916068230372786}
             client-secret: ${INSTAGRAM_CLIENT_SECRET:22826d7371a23aec90c3dc9601fcc49b}
+            client-authentication-method: client_secret_post
             scope:
               - user_profile
-            redirect-uri: ${BASE_URI}/login/oauth/code/instagram
+              - user_media
+            redirect-uri: ${BASE_URI:https://localhost:8443}/login/oauth2/code/instagram
             authorization-grant-type: authorization_code
             provider: instagram
         provider:
           instagram:
             authorization-uri: https://api.instagram.com/oauth/authorize
             token-uri: https://api.instagram.com/oauth/access_token
-            user-info-uri: https://graph.instagram.com/v20.0/me?fields=id,username&access-token=
+            user-info-uri: https://graph.instagram.com/me?fields=id,username&access_token=
             user-name-attribute: username
 
 
