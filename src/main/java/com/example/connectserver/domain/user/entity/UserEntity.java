@@ -12,7 +12,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private long id;
+    private Long id;
 
     @Column(name = "instagram_id", unique = true)
     private String instagramId;

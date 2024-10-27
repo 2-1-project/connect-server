@@ -1,4 +1,4 @@
-package com.example.connectserver.repository;
+package com.example.connectserver.domain.user.repository;
 
 import com.example.connectserver.domain.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,11 +1,9 @@
 package com.example.connectserver.domain.user.service;
 
 import com.example.connectserver.domain.user.entity.UserEntity;
-import com.example.connectserver.domain.user.exception.OAuthUserNoExistException;
 import com.example.connectserver.global.auth.InstagramOAuthService;
-import com.example.connectserver.repository.UserRepository;
+import com.example.connectserver.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
