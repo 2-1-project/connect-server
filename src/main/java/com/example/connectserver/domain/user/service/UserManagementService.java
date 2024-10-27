@@ -2,7 +2,7 @@ package com.example.connectserver.domain.user.service;
 
 import com.example.connectserver.domain.user.dto.InstagramUserUpdate;
 import com.example.connectserver.domain.user.entity.UserEntity;
-import com.example.connectserver.repository.UserRepository;
+import com.example.connectserver.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
