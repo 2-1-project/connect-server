@@ -44,7 +44,13 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests( request ->
-                        request.requestMatchers("/","/login/**","/test_null").permitAll().anyRequest().authenticated()
+                        request
+                            .requestMatchers("/","/login/**","/test_null").permitAll()
+                            .requestMatchers("/preferences/qr/{userId}").permitAll()
+                            .requestMatchers("/preferences/{userId}").permitAll()
+                            .requestMatchers("/preferences").permitAll()
+
+                            .anyRequest().authenticated()
                 )
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
