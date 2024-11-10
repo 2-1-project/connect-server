@@ -35,9 +35,23 @@ spring:
             user-info-uri: https://graph.instagram.com/me?fields=id,username&access_token=
             user-name-attribute: username
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 
 jwt:
   prefix: ${JWT_PREFIX:Bearer}
   header: ${JWT_HEADER:Authorization}
   secret: ${JWT_SECRET:whsrudgksmsrnralsdufjqnsfjenczndbrbucairk}
   expiration: ${JWT_EXPIRATION:86400000}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_ACCESS_KEY:asf}
+      secret-key: ${S3_SECRET_KEY:asfs}
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: java-connect

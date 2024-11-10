@@ -50,7 +50,7 @@ public class SecurityConfig {
                             .requestMatchers("/preferences/{userId}").permitAll()
                             .requestMatchers("/preferences").permitAll()
 
-                            .anyRequest().authenticated()
+                            .anyRequest().permitAll()
                 )
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

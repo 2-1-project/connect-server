@@ -5,7 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CreatePreferenceRequest {
+public class UpdatePreferenceRequest {
+    private String existingQrCodeUrl;
     private String name;
     private String intro;
     private List<PreferenceItem> list;
