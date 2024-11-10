@@ -45,4 +45,5 @@ public class InstagramOAuthService extends DefaultOAuth2UserService {
 
         return new DefaultOAuth2User(collection, userInfo, "username");
     }
+
 }

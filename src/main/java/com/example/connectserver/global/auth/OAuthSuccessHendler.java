@@ -29,14 +29,8 @@ public class OAuthSuccessHendler extends SimpleUrlAuthenticationSuccessHandler {
         String id = oAuth2User.getAttribute("id");
         String token = jwtProvider.OAuthTokenGenerator(id);
         response.addCookie(makeCookie("Authorization",token));
-        UserEntity user = userManagementService.getUserByInstaId(id);
-        if (user.getUsername() == null) {
-            System.out.println("ggg");
-            response.sendRedirect("https://localhost:8443/test_null"); // 정보 입력 페이지로 이동.
-        }else {
-            System.out.println("OAuthSuccess");
-            response.sendRedirect("http://localhost:3000"); // 매인페이지로 이동
-        }
+        System.out.println("OAuthSuccess");
+        response.sendRedirect("http://localhost:3000"); // 매인페이지로 이동
     }
 
     public Cookie makeCookie(String key, String value) {

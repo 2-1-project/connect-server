@@ -20,7 +20,6 @@ public class CustomUserService implements UserDetailsService {
         UserEntity user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
         return CustomUserDetails.builder()
                 .username(username)
-                .password(user.getPassword())
                 .build();
     }
 }

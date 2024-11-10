@@ -1,9 +1,11 @@
 package com.example.connectserver.domain.user.entity;
 
+import com.example.connectserver.domain.preference.entity.BookmarkEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -11,11 +13,8 @@ import java.util.Date;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long id;
-
-    @Column(name = "instagram_id", unique = true)
-    private String instagramId;
+    @Column(name = "instagram_id")
+    private Long instagramId;
 
     @Column(name = "instagram_username")
     private String instagramUsername;
@@ -23,6 +22,6 @@ public class UserEntity {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
-    private String password;
+    @OneToMany(mappedBy = "")
+    private List<BookmarkEntity> bookmarks;
 }

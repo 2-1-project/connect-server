@@ -20,11 +20,11 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = instagramOAuthService.loadUser(userRequest);
-        String id = oAuth2User.getAttribute("id");
+        Long id = oAuth2User.getAttribute("id");
         UserEntity user = userRepository.findByInstagramId(id);
         if (user == null) {
             UserEntity userEntity = new UserEntity();
-            userEntity.setInstagramId(id);
+            userEntity.setInstagramId(Long.valueOf(id));
             userEntity.setInstagramUsername(oAuth2User.getAttribute("username"));
             userRepository.save(userEntity);
             return oAuth2User;

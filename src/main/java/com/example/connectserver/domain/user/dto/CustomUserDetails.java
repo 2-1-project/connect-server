@@ -10,8 +10,9 @@ import java.util.List;
 
 @Builder
 public record CustomUserDetails(
-        String username,
-        String password
+        Long id,
+        String insta_username,
+        String username
         //Collection<? extends GrantedAuthority> authorities
 ) implements UserDetails {
     @Override
@@ -20,12 +21,12 @@ public record CustomUserDetails(
     }
 
     @Override
-    public String getPassword() {
+    public String getUsername() {
         return username;
     }
 
     @Override
-    public String getUsername() {
-        return password;
+    public String getPassword() {
+        return null;
     }
 }

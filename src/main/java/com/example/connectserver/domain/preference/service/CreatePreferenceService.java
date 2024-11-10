@@ -29,7 +29,7 @@ public class CreatePreferenceService {
 
         PreferenceResponse response = new PreferenceResponse();
         response.setId(savedPreference.getId());
-        response.setUserId(user.getId());
+        response.setUserId(user.getInstagramId());
         response.setQuestion(savedPreference.getQuestion());
         response.setAnswer(savedPreference.getAnswer());
 
