@@ -1,11 +1,11 @@
 server:
-  ssl:
-    enabled: true
-    key-store-password: ${KEY_PASSWORD}
-    key-store-type: PKCS12
-    key-store: C:\Users\user\Desktop\Back\javaTeamProject\src\main\resources\keyStore\test.p12
-    key-alias: test
-  port: 8443
+#  ssl:
+#    enabled: true
+#    key-store-password: ${KEY_PASSWORD}
+#    key-store-type: PKCS12
+#    key-store: C:\Users\user\Desktop\Back\javaTeamProject\src\main\resources\keyStore\test.p12
+#    key-alias: test
+#  port: 8443
 
 spring:
   datasource:

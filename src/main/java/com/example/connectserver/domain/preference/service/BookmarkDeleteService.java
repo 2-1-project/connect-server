@@ -16,7 +16,7 @@ public class BookmarkDeleteService {
 
     @Transactional
     public void excute(BookmarkDeleteRequest request, Long instaId) {
-        BookmarkEntity bookmarkEntity = bookmarkRepository.findByBookmarkId(request.getBookmarkId()).orElseThrow(()-> new RuntimeException("no exist bookmark")
+        BookmarkEntity bookmarkEntity = bookmarkRepository.findById(request.getBookmarkId()).orElseThrow(()-> new RuntimeException("no exist bookmark")
         );
 
         if(bookmarkEntity.getUser().equals(userRepository.findByInstagramId(instaId))){
