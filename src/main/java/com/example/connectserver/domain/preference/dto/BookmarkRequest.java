@@ -7,3 +7,4 @@ public class BookmarkRequest {
     private String name;
     private long card_id;
 }
+

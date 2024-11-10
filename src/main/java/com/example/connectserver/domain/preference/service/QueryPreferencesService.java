@@ -25,7 +25,7 @@ public class QueryPreferencesService {
             .map(pref -> {
                 PreferenceResponse response = new PreferenceResponse();
                 response.setId(pref.getId());
-                response.setUserId(user.getInstagramId());
+                response.setUserId(user.getId());
                 response.setQuestion(pref.getQuestion());
                 response.setAnswer(pref.getAnswer());
                 return response;

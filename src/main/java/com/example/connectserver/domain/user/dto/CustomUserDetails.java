@@ -11,7 +11,6 @@ import java.util.List;
 @Builder
 public record CustomUserDetails(
         Long id,
-        String insta_username,
         String username
         //Collection<? extends GrantedAuthority> authorities
 ) implements UserDetails {
