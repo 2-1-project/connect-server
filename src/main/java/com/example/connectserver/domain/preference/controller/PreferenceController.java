@@ -3,7 +3,7 @@ package com.example.connectserver.domain.preference.controller;
 import com.example.connectserver.domain.preference.dto.BookmarkDeleteRequest;
 import com.example.connectserver.domain.preference.dto.BookmarkRequest;
 import com.example.connectserver.domain.preference.dto.CreatePreferenceRequest;
-import com.example.connectserver.domain.preference.dto.PreferenceResponse;
+import com.example.connectserver.domain.preference.dto.ProfileResponse;
 import com.example.connectserver.domain.preference.dto.QRCodeResponse;
 import com.example.connectserver.domain.preference.dto.QueryPreferenceListResponse;
 import com.example.connectserver.domain.preference.dto.UpdatePreferenceRequest;
@@ -11,7 +11,7 @@ import com.example.connectserver.domain.preference.service.BookmarkCreateService
 import com.example.connectserver.domain.preference.service.BookmarkDeleteService;
 import com.example.connectserver.domain.preference.service.CreatePreferenceService;
 import com.example.connectserver.domain.preference.service.QueryPreferenceListService;
-import com.example.connectserver.domain.preference.service.QueryPreferencesService;
+import com.example.connectserver.domain.preference.service.QueryProfileService;
 import com.example.connectserver.domain.preference.service.UpdatePreferenceService;
 import com.example.connectserver.domain.user.dto.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -34,17 +34,12 @@ import java.util.Map;
 @RequestMapping("/preferences")
 public class PreferenceController {
 
-    private final QueryPreferencesService queryPreferencesService;
     private final BookmarkCreateService bookmarkCreateService;
     private final BookmarkDeleteService bookmarkDeleteService;
-    private final CreatePreferenceService createPreferenceService;
     private final UpdatePreferenceService updatePreferenceService;
     private final QueryPreferenceListService queryPreferenceListService;
-
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<PreferenceResponse>> get(@PathVariable Long userId) {
-        return ResponseEntity.ok(queryPreferencesService.execute(userId));
-    }
+    private final QueryProfileService queryProfileService;
+    private final CreatePreferenceService createPreferenceService;
 
     @PostMapping("/bookmark")
     public ResponseEntity bookmarkCreate(@RequestBody BookmarkRequest request, Authentication authentication){
@@ -84,5 +79,11 @@ public class PreferenceController {
     public ResponseEntity<?> getAllBusinessCards() {
         List<QueryPreferenceListResponse> data = queryPreferenceListService.getBusinessCards();
         return ResponseEntity.ok().body(Map.of("data", data));
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<ProfileResponse> getProfile(@PathVariable String username) {
+        ProfileResponse profileResponse = queryProfileService.getProfileByUsername(username);
+        return ResponseEntity.ok(profileResponse);
     }
 }

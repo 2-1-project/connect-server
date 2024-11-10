@@ -9,10 +9,4 @@ public class CreatePreferenceRequest {
     private String name;
     private String intro;
     private List<PreferenceItem> list;
-
-    @Data
-    public static class PreferenceItem {
-        private String question;
-        private String answer;
-    }
 }

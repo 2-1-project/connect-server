@@ -3,6 +3,7 @@ package com.example.connectserver.domain.preference.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.example.connectserver.domain.preference.dto.PreferenceItem;
 import com.example.connectserver.domain.preference.dto.QRCodeResponse;
 import com.example.connectserver.domain.preference.dto.UpdatePreferenceRequest;
 import com.google.zxing.WriterException;
@@ -31,8 +32,13 @@ public class UpdatePreferenceService {
     public QRCodeResponse execute(UpdatePreferenceRequest request) throws WriterException, IOException {
         String existingQrCodeUrl = request.getExistingQrCodeUrl();
 
+        if (existingQrCodeUrl != null) {
+            String existingFileName = existingQrCodeUrl.substring(existingQrCodeUrl.lastIndexOf("/") + 1);
+            amazonS3.deleteObject(bucketName, "qr-codes/" + existingFileName);
+        }
+
         StringBuilder qrContent = new StringBuilder("Name: " + request.getName() + "\nIntro: " + request.getIntro() + "\n");
-        for (UpdatePreferenceRequest.PreferenceItem item : request.getList()) {
+        for (PreferenceItem item : request.getList()) { // 외부 PreferenceItem 사용
             qrContent.append("Q: ").append(item.getQuestion()).append("\n")
                 .append("A: ").append(item.getAnswer()).append("\n");
         }

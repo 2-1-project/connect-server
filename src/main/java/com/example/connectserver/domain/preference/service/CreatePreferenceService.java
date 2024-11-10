@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.example.connectserver.domain.preference.dto.CreatePreferenceRequest;
+import com.example.connectserver.domain.preference.dto.PreferenceItem;
 import com.example.connectserver.domain.preference.dto.QRCodeResponse;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -29,7 +30,8 @@ public class CreatePreferenceService {
 
     public QRCodeResponse execute(CreatePreferenceRequest request) throws WriterException, IOException {
         StringBuilder qrContent = new StringBuilder("Name: " + request.getName() + "\nIntro: " + request.getIntro() + "\n");
-        for (CreatePreferenceRequest.PreferenceItem item : request.getList()) {
+
+        for (PreferenceItem item : request.getList()) {
             qrContent.append("Q: ").append(item.getQuestion()).append("\n")
                 .append("A: ").append(item.getAnswer()).append("\n");
         }
