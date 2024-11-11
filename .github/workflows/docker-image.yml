@@ -29,8 +29,8 @@ jobs:
       - name: Docker build & push docker repo
         run: |
           docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/dev .
-          docker push ${{ secrets.DOCKER_REPO }}/dev
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/connect .
+          docker push ${{ secrets.DOCKER_REPO }}/connect
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -43,7 +43,7 @@ jobs:
           script: |
             cd Connect-docker-com
             docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/dev
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/connect
             sudo docker compose up --build -d
             sudo docker image prune -f
 
