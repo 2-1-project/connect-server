@@ -33,7 +33,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/preferences")
 public class PreferenceController {
-
+//test용
     private final BookmarkCreateService bookmarkCreateService;
     private final BookmarkDeleteService bookmarkDeleteService;
     private final UpdatePreferenceService updatePreferenceService;
