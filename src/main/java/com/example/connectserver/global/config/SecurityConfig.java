@@ -45,12 +45,12 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests( request ->
                         request
-                            .requestMatchers("/","/login/**","/test_null").permitAll()
-                            .requestMatchers("/preferences/qr/{userId}").permitAll()
-                            .requestMatchers("/preferences/{userId}").permitAll()
-                            .requestMatchers("/preferences").permitAll()
+                            .requestMatchers("/","/login/**").permitAll()
+//                            .requestMatchers("/preferences/qr/{userId}").permitAll()
+//                            .requestMatchers("/preferences/{userId}").permitAll()
+//                            .requestMatchers("/preferences").permitAll()
 
-                            .anyRequest().permitAll()
+                            .anyRequest().authenticated()
                 )
 
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

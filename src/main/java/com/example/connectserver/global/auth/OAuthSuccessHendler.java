@@ -30,7 +30,7 @@ public class OAuthSuccessHendler extends SimpleUrlAuthenticationSuccessHandler {
         String token = jwtProvider.OAuthTokenGenerator(id);
         response.addCookie(makeCookie("Authorization",token));
         System.out.println("OAuthSuccess");
-        response.sendRedirect("http://localhost:3000"); // 매인페이지로 이동
+        response.setStatus(200); // 정상 수신으로 설정
     }
 
     public Cookie makeCookie(String key, String value) {

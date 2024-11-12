@@ -42,17 +42,25 @@ public class PreferenceController {
     private final CreatePreferenceService createPreferenceService;
 
     @PostMapping("/bookmark")
-    public ResponseEntity bookmarkCreate(@RequestBody BookmarkRequest request, Authentication authentication){
+    public ResponseEntity<Object> bookmarkCreate(@RequestBody BookmarkRequest request, Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getDetails();
         bookmarkCreateService.excute(request,userDetails.id());
-        return ResponseEntity.ok().body(null);
+        try {
+            return ResponseEntity.ok().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(null);
+        }
     }
 
     @DeleteMapping("/bookmark")
-    public ResponseEntity<?> deleteBookmark(@RequestBody BookmarkDeleteRequest request, Authentication authentication){
+    public ResponseEntity<Object> deleteBookmark(@RequestBody BookmarkDeleteRequest request, Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getDetails();
-        bookmarkDeleteService.excute(request,userDetails.id());
-        return ResponseEntity.ok().body(null);
+        try {
+            bookmarkDeleteService.excute(request, userDetails.id());
+            return ResponseEntity.ok().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(null);
+        }
     }
 
     @PostMapping("/create")
