@@ -11,7 +11,7 @@ spring:
   datasource:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:1234}
-    url: jdbc:mysql://localhost:3306/${DB_NAME:connect-db}
+    url: jdbc:mysql://15.164.52.112:3306/${DB_NAME:connect-db}
     driver-class-name: com.mysql.cj.jdbc.Driver
   security:
     oauth2:
@@ -25,7 +25,7 @@ spring:
             scope:
               - user_profile
               - user_media
-            redirect-uri: ${BASE_URI:https://localhost:8443}/login/oauth2/code/instagram
+            redirect-uri: ${BASE_URI:https://15.164.52.112:8080}/login/oauth2/code/instagram
             authorization-grant-type: authorization_code
             provider: instagram
         provider:
