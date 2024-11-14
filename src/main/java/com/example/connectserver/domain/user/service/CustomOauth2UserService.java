@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 @RequiredArgsConstructor
 public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequest,OAuth2User> {
@@ -20,7 +22,7 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = instagramOAuthService.loadUser(userRequest);
-        Long id = oAuth2User.getAttribute("id");
+        Long id = Long.parseLong(Objects.requireNonNull(oAuth2User.getAttribute("id")));
         UserEntity user = userRepository.findByInstagramId(id);
         if (user == null) {
             UserEntity userEntity = new UserEntity();
