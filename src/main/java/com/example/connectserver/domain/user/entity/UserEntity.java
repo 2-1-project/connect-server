@@ -19,7 +19,4 @@ public class UserEntity {
 
     @Column(name = "username")
     private String username;
-
-    @Column(name = "intro")
-    private String intro;
 }
