@@ -25,7 +25,7 @@ spring:
             scope:
               - user_profile
               - user_media
-            redirect-uri: ${BASE_URI:https://15.164.52.112:8080}/login/oauth2/code/instagram
+            redirect-uri: ${BASE_URI:https://15.164.52.112.nip.io}/login/oauth2/code/instagram
             authorization-grant-type: authorization_code
             provider: instagram
         provider:
