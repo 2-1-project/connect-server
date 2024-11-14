@@ -10,7 +10,6 @@ import java.util.Date;
 @Table(name = "user")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instagram_id")
     private Long instagramId;
 
