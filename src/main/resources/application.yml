@@ -9,9 +9,9 @@ server:
 
 spring:
   datasource:
+    url: jdbc:mysql://15.164.52.112:3310/${DB_NAME:connect-db}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:1234}
-    url: jdbc:mysql://15.164.52.112:3306/${DB_NAME:connect-db}
     driver-class-name: com.mysql.cj.jdbc.Driver
   security:
     oauth2:
@@ -34,7 +34,6 @@ spring:
             token-uri: https://api.instagram.com/oauth/access_token
             user-info-uri: https://graph.instagram.com/me?fields=id,username&access_token=
             user-name-attribute: username
-
   jpa:
     properties:
       hibernate:
