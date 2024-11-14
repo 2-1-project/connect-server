@@ -37,6 +37,8 @@ spring:
   jpa:
     properties:
       hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
         dialect: org.hibernate.dialect.MySQLDialect
         ddl-auto: none
 
